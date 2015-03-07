@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
+  authorize_resource only: [:new, :create, :edit, :update]
   
   expose(:categories)
   expose(:category)

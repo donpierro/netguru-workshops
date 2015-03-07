@@ -19,6 +19,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'travis'
 gem 'ffaker'
 gem 'konf'
+gem 'cancancan', '~> 1.10'
 
 group :development do
   gem 'spring'
