@@ -1,6 +1,14 @@
-%h1 Listing categories
+.row
+  .col-md-4.col-md-offset-4
+    %h1 Listing categories
+  %br
+  .col-md-2.col-md-offset-2
+    - if can? :new, Category
+      = link_to 'New Category', new_category_path, class: 'btn btn-default btn-xs'
 
-%table.table
+%br
+
+%table.table.table-striped
   %tr
     %th Name
     %th
@@ -9,13 +17,8 @@
     %tr
       %td= category.name
       %td
-        = link_to 'Show', category
+        = link_to 'Show', category, class: 'btn btn-default'
         - if can? :edit, Category
-          = link_to 'Edit', edit_category_path(category)
+          = link_to 'Edit', edit_category_path(category), class: 'btn btn-primary'
         - if can? :destroy, Category
-          = link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-- if can? :new, Category
-  = link_to 'New Category', new_category_path
+          = link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'

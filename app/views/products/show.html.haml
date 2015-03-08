@@ -1,26 +1,26 @@
-%p#notice= notice
-%p#error= flash[:error]
+%dl.dl-horizontal
+  %dt Title:
+  %dd= product.title
 
-%p
-  %b Title:
-  = product.title
-%p
-  %b Description:
-  = product.description
-%p
-  %b Price:
-  = product.price
-%p
-  %b Average Rating:
-  = product.average_rating
-%p
-  %b Category
-  = product.category.name
+  %dt Description:
+  %dd= product.description
 
-%h3 Reviews
+  %dt Price:
+  %dd= product.price
+
+  %dt Average Rating:
+  %dd= product.average_rating
+
+  %dt Category
+  %dd= product.category.name
+
+.row
+  .col-md-4.col-md-offset-1
+    %h3 Reviews
+
+    = render reviews
+
 = render 'reviews/form'
-
-= render reviews
 
 - if can? :edit, Category
   = link_to 'Edit', edit_category_product_path(category.id, product.id)
