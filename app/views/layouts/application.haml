@@ -9,25 +9,27 @@
     = javascript_include_tag 'application'
 
   %body
-    %nav.navbar.navbar-default
-      .container-fluid
-        .navbar-header
-          %span.navbar-brand #{AppConfig.workshops_name}
-        %p.navbar-text.navbar-right
-          = link_to 'Home', root_path
-          - if user_signed_in?
-            = link_to 'Sign out', destroy_user_session_path, method: :delete
-          - else
-            = link_to 'Sign in', new_user_session_path
-            = link_to 'Sign up', new_user_registration_path
-    .container-fluid
-      .row
-        .col-lg-12
-          - unless flash.empty?
-            - if flash[:notice]
-              .alert.alert-success= flash[:notice]
+    .container
+      %nav.navbar.navbar-default
+        .container-fluid
+          .navbar-header
+            %span
+              = link_to %(#{AppConfig.workshops_name}), root_path, class: 'navbar-brand'
+          %p.navbar-text.navbar-right
+            = link_to 'Home', root_path
+            - if user_signed_in?
+              = link_to 'Sign out', destroy_user_session_path, method: :delete
             - else
-              .alert.alert-danger= flash[:error] || flash[:alert]
-      .row
-        .col-lg-12
-          = yield
+              = link_to 'Sign in', new_user_session_path
+              = link_to 'Sign up', new_user_registration_path
+      .container-fluid
+        .row
+          .col-lg-12
+            - unless flash.empty?
+              - if flash[:notice]
+                .alert.alert-success= flash[:notice]
+              - else
+                .alert.alert-danger= flash[:error] || flash[:alert]
+        .row
+          .col-lg-12
+            = yield

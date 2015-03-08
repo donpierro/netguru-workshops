@@ -20,6 +20,7 @@ gem 'travis'
 gem 'ffaker'
 gem 'konf'
 gem 'cancancan', '~> 1.10'
+gem 'will_paginate-bootstrap', '~>1.0.1'
 
 group :development do
   gem 'spring'

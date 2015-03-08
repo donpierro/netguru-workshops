@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
   expose_decorated(:reviews, ancestor: :product)
 
   def index
+    self.products = category.products.paginate(page: params[:page], per_page: 10)
   end
 
   def show
