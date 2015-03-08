@@ -1,18 +1,29 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = category.name
+.well
+  %p
+    %b Name:
+    = category.name
 
-%p
-  - category.products.each do |product|
-    = product.title
+  %p
+    %b Number of products:
+    %span.badge= category.products.size
+
+  %p
+    %b List of products:
+    - category.products.each do |product|
+      = link_to product.title, category_product_path(category, product.id), class: 'label label-default'
 
 %p
   %h3 New product
   = render 'products/form'
 
+%br
+%br
+
 - if can? :edit, Category
-  = link_to 'Edit', edit_category_path(category)
+  = link_to 'Edit', edit_category_path(category), class: 'btn btn-default'
   \|
+= link_to 'Display all products', category_products_path(category, product), class: 'btn btn-default'
+\|
 = link_to 'Back', categories_path, class: 'btn btn-primary'

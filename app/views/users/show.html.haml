@@ -1,30 +1,29 @@
-%h2 User profile page
-
-%br
+.panel.panel-default
+  .panel-heading 
+    %h4 User profile page
+  .panel-body
+    %table.table.table-user-information
+      %tbody
+        %tr
+          %td Firstname:
+          %td= user.firstname
+        %tr
+          %td Lastname:
+          %td= user.lastname
+        %tr
+          %td Email:
+          %td= user.email
+        %tr
+          %td Account create date:
+          %td= user.created_date
+        %tr
+          %td Last login date:
+          %td= user.last_login_date
+        %tr
+          %td Edit profile:
+          %td= link_to 'Edit', edit_user_registration_path, class: 'btn btn-default col-lg-2'
 
 .row
   .col-md-12
-    .col-md-8.col-lg-8
-      %table.table.table-user-information
-        %tbody
-          %tr
-            %td Firstname:
-            %td= user.firstname
-          %tr
-            %td Lastname:
-            %td= user.lastname
-          %tr
-            %td Email:
-            %td= user.email
-          %tr
-            %td Account create date:
-            %td= user.created_date
-          %tr
-            %td Last login date:
-            %td= user.last_login_date
-
-.row
-  .col-md-12
-    %h2 My last 5 reviews:
+    %h2 My last reviews:
     = render reviews
-

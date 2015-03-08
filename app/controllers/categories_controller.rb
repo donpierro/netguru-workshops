@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   load_and_authorize_resource only: [:new, :create, :edit, :update, :destroy]
 
   rescue_from CanCan::AccessDenied do
-    redirect_to new_user_session_path
+    redirect_to(new_user_session_path, flash: { error: 'You are not allowed to edit this product.' } )
   end
   
   expose(:categories)

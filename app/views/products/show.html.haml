@@ -6,20 +6,24 @@
   %dd= product.description
 
   %dt Price:
-  %dd= product.price
+  %dd= number_to_currency(product.price, unit: '€')
 
   %dt Average Rating:
-  %dd= product.average_rating
+  %dd
+    %span.badge= number_with_precision(product.average_rating, precision: 2)
 
   %dt Category
   %dd= product.category.name
 
+%h3 Add new review
+= render 'reviews/form'
+
 %h3 Reviews
 = render reviews
 
-= render 'reviews/form'
-
+%br
+%br
 - if can? :edit, Category
-  = link_to 'Edit', edit_category_product_path(category.id, product.id)
+  = link_to 'Edit', edit_category_product_path(category.id, product.id), class: 'btn btn-default'
   \|
 = link_to 'Back', category_products_path, class: 'btn btn-primary'

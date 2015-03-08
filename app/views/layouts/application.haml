@@ -28,10 +28,11 @@
         .row
           .col-lg-12
             - unless flash.empty?
-              - if flash[:notice]
-                .alert.alert-success= flash[:notice]
-              - else
-                .alert.alert-danger= flash[:error] || flash[:alert]
+              - flash.each do |type, msg|
+                - if type == 'notice'
+                  .alert.alert-success= msg
+                - else
+                  .alert.alert-danger= msg
         .row
           .col-lg-12
             = yield

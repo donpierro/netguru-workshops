@@ -1,24 +1,27 @@
-.row
-  .col-md-4.col-md-offset-4
-    %h1 Listing categories
+.panel.panel-default
+  .row
+    .col-md-4.col-md-offset-2
+      %h1 Listing categories
+    %br
+    .col-md-2.col-md-offset-3
+      - if can? :new, Category
+        = link_to 'New Category', new_category_path, class: 'btn btn-default'
+
   %br
-  .col-md-2.col-md-offset-2
-    - if can? :new, Category
-      = link_to 'New Category', new_category_path, class: 'btn btn-default btn-xs'
 
-%br
+  .row
+    .col-md-10.col-md-offset-1
+      %table.table.table-striped
+        %tr
+          %th.col-md-7.text-center Name
+          %th.col-md-5.text-center Actions
 
-%table.table.table-striped
-  %tr
-    %th Name
-    %th
-
-  - categories.each do |category|
-    %tr
-      %td= category.name
-      %td
-        = link_to 'Show', category, class: 'btn btn-default'
-        - if can? :edit, Category
-          = link_to 'Edit', edit_category_path(category), class: 'btn btn-primary'
-        - if can? :destroy, Category
-          = link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+        - categories.each do |category|
+          %tr
+            %td.text-center= category.name
+            %td.text-center
+              = link_to 'Show', category, class: 'btn btn-default btn-xs'
+              - if can? :edit, Category
+                = link_to 'Edit', edit_category_path(category), class: 'btn btn-primary btn-xs'
+              - if can? :destroy, Category
+                = link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs'
