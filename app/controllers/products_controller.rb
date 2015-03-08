@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  load_and_authorize_resource only: [:edit, :update]
+  load_and_authorize_resource only: [:edit, :update, :destroy]
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to(category_product_url(category, product), flash: { error: 'You are not allowed to edit this product.' })

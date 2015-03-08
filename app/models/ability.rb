@@ -10,7 +10,7 @@ class Ability
       can :index, Category
     end
 
-    can [:edit, :update], Product do |product|
+    can [:edit, :update, :destroy], Product do |product|
       product.user == user
     end
   end
