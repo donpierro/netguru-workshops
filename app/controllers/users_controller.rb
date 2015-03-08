@@ -7,10 +7,11 @@ class UsersController < ApplicationController
   end
 
   expose(:user)
-  expose(:reviews) { user.reviews.limit(5) }
+  expose(:reviews)
   expose_decorated(:user)
   expose_decorated(:reviews)
 
   def show
+    self.reviews = user.reviews.limit(5)
   end
 end

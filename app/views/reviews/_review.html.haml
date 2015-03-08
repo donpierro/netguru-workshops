@@ -1,4 +1,7 @@
-%p= review.content
-%p
-  %b= review.rating
-  %em= review.author
+Added by:
+%em= review.author
+,
+%em= review.created_date
+, Rate:
+%b= review.rating
+.well= review.content
