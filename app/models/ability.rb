@@ -13,5 +13,9 @@ class Ability
     can [:edit, :update, :destroy], Product do |product|
       product.user == user
     end
+
+    can [:show], User do |current_user|
+      user == current_user
+    end
   end
 end

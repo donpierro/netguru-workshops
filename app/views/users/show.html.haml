@@ -1,0 +1,30 @@
+%h2 User profile page
+
+%br
+
+.row
+  .col-md-12
+    .col-md-8.col-lg-8
+      %table.table.table-user-information
+        %tbody
+          %tr
+            %td Firstname:
+            %td= user.firstname
+          %tr
+            %td Lastname:
+            %td= user.lastname
+          %tr
+            %td Email:
+            %td= user.email
+          %tr
+            %td Account create date:
+            %td= user.format_created_date
+          %tr
+            %td Last login date:
+            %td= user.format_last_login_date
+
+.row
+  .col-md-12
+    %h2 My last 5 reviews:
+    = render reviews
+
