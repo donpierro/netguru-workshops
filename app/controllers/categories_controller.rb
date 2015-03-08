@@ -1,6 +1,10 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
-  authorize_resource only: [:new, :create, :edit, :update]
+  load_and_authorize_resource only: [:new, :create, :edit, :update, :destroy]
+
+  rescue_from CanCan::AccessDenied do
+    redirect_to new_user_session_path
+  end
   
   expose(:categories)
   expose(:category)

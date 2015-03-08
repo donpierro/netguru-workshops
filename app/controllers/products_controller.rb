@@ -1,4 +1,11 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+  load_and_authorize_resource only: [:edit, :update]
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to(category_product_url(category, product), flash: { error: 'You are not allowed to edit this product.' })
+  end
+
   expose(:category)
   expose(:products)
   expose(:product)
@@ -19,6 +26,7 @@ class ProductsController < ApplicationController
 
   def create
     self.product = Product.new(product_params)
+    product.user = current_user
 
     if product.save
       category.products << product
@@ -32,7 +40,7 @@ class ProductsController < ApplicationController
     if self.product.update(product_params)
       redirect_to category_product_url(category, product), notice: 'Product was successfully updated.'
     else
-      render action: 'edit'
+      redirect_to category_product_url(category, product)
     end
   end
 

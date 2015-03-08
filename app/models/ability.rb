@@ -5,9 +5,13 @@ class Ability
     user ||= User.new
 
     if user.admin?
-      can [:new, :update, :create, :edit], :all
+      can [:new, :update, :create, :edit, :destroy], Category
     else
-      can :index, :all
+      can :index, Category
+    end
+
+    can [:edit, :update], Product do |product|
+      product.user == user
     end
   end
 end
