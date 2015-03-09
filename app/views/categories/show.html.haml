@@ -14,16 +14,17 @@
     - category.products.each do |product|
       = link_to product.title, category_product_path(category, product.id), class: 'label label-default'
 
-%p
-  %h3 New product
-  = render 'products/form'
+- if user_signed_in?
+  %p
+    %h3 New product
+    = render 'products/form'
 
 %br
 %br
 
+= link_to 'Back', categories_path, class: 'btn btn-primary'
+\|
 - if can? :edit, Category
   = link_to 'Edit', edit_category_path(category), class: 'btn btn-default'
   \|
 = link_to 'Display all products', category_products_path(category, product), class: 'btn btn-default'
-\|
-= link_to 'Back', categories_path, class: 'btn btn-primary'

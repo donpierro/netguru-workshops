@@ -15,15 +15,17 @@
   %dt Category
   %dd= product.category.name
 
-%h3 Add new review
-= render 'reviews/form'
+- if user_signed_in?
+  %h3 Add new review
+  = render 'reviews/form'
 
 %h3 Reviews
 = render reviews
 
 %br
 %br
-- if can? :edit, Category
-  = link_to 'Edit', edit_category_product_path(category.id, product.id), class: 'btn btn-default'
+
+= link_to 'Back to list', category_products_path, class: 'btn btn-primary'
+- if can? :edit, product
   \|
-= link_to 'Back', category_products_path, class: 'btn btn-primary'
+  = link_to 'Edit', edit_category_product_path(category.id, product.id), class: 'btn btn-default'
